@@ -3,104 +3,81 @@ set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1
 
-" Make Vim more useful
-set nocompatible
-" Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
-" Enhance command-line completion
-set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
-" Allow backspace in insert mode
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+
+" Any valid git URL is allowed
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" Plugins for JavaScript
+Plug 'pangloss/vim-javascript'
+
+" Asynchronous execution library for Vim
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" Plugins for TypeScript
+Plug 'Quramy/tsuquyomi'
+
+" Syntax HighLighting
+Plug 'leafgarland/typescript-vim'
+
+" Prettier
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+" Airline
+Plug 'bling/vim-airline'
+
+" Nerdcommenter
+Plug 'scrooloose/nerdcommenter'
+
+" Initialize plugin system
+call plug#end()
+
+" Backspace fix on Mac
 set backspace=indent,eol,start
-" Optimize for fast terminal connections
-set ttyfast
-" Add the g flag to search/replace by default
-set gdefault
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
+
+" Display line numbers
+set number
+
 " Change mapleader
 let mapleader=","
-" Don’t add empty newlines at the end of files
-set binary
-set noeol
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-if exists("&undodir")
-	set undodir=~/.vim/undo
-endif
 
-" Don’t create backups when editing files in certain directories
-set backupskip=/tmp/*,/private/tmp/*
-
-" Respect modeline in files
-set modeline
-set modelines=4
-" Enable per-directory .vimrc files and disable unsafe commands in them
-set exrc
-set secure
-" Enable line numbers
-set number
-" Enable syntax highlighting
-syntax on
-" Highlight current line
-set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
-" Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
 " Highlight searches
 set hlsearch
-" Ignore case of searches
-set ignorecase
-" Highlight dynamically as pattern is typed
-set incsearch
-" Always show status line
-set laststatus=2
-" Enable mouse in all modes
-set mouse=a
-" Disable error bells
-set noerrorbells
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-" Show the cursor position
-set ruler
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-" Show the current mode
-set showmode
-" Show the filename in the window titlebar
-set title
-" Show the (partial) command as it’s being typed
-set showcmd
-" Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
 
-" Strip trailing whitespace (,ss)
-function! StripWhitespace()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	:%s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
-endfunction
-noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
 
-" Automatic commands
-if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-endif
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" Mapping NERDTree 
+map <C-n> :NERDTreeToggle<CR>
+
+" ctrlp
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+" swap files
+set directory=$HOME/.vim/swapfiles/
+
+" Typescript Suggestions
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-x><C-o>
+let g:tsuquyomi_completion_detail = 2
+
+" Highlight current line
+set cursorline
+
+" Python version
+let g:pymode_python = 'python3'
