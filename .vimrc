@@ -81,3 +81,7 @@ set cursorline
 
 " Python version
 let g:pymode_python = 'python3'
+
+" Resize split
+map <c-o> :vertical resize +10<CR>
+map <c-_> :vertical resize -10<CR>
