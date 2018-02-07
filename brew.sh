@@ -93,3 +93,8 @@ brew install zopfli
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# Dev fonts
+brew tap caskroom/fonts
+brew cask install font-hack-nerd-font
+
