@@ -43,6 +43,9 @@ Plug 'scrooloose/nerdcommenter'
 " vim-jsbeautify
 Plug 'maksimr/vim-jsbeautify'
 
+" Auto pairs for brackets and other stuff...
+Plug 'jiangmiao/auto-pairs'
+
 " Initialize plugin system
 call plug#end()
 
