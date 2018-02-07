@@ -40,6 +40,9 @@ Plug 'bling/vim-airline'
 " Nerdcommenter
 Plug 'scrooloose/nerdcommenter'
 
+" vim-jsbeautify
+Plug 'maksimr/vim-jsbeautify'
+
 " Initialize plugin system
 call plug#end()
 
@@ -66,15 +69,20 @@ map <C-n> :NERDTreeToggle<CR>
 
 " ctrlp
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\node_modules\|DS_Store\|git\|v[\/]\.(git|hg|svn)$'
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-" swap files
+" ../../../swap files
 set directory=$HOME/.vim/swapfiles/
 
 " Typescript Suggestions
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-x><C-o>
 let g:tsuquyomi_completion_detail = 2
+let g:tsuquyomi_disable_quickfix=1
 
 " Highlight current line
 set cursorline
@@ -85,3 +93,12 @@ let g:pymode_python = 'python3'
 " Resize split
 map <c-o> :vertical resize +10<CR>
 map <c-_> :vertical resize -10<CR>
+
+" Formatting with Beautify
+autocmd FileType html noremap <buffer> <leader>f :call HtmlBeautify()<cr>
+
+" source $MYVIMRC reloads the saved $MYVIMRC
+:nmap <Leader>s :source $MYVIMRC<CR>
+
+" opens $MYVIMRC for editing, or use :tabedit $MYVIMRC
+:nmap <Leader>v :e $MYVIMRC<CR>
