@@ -1,3 +1,8 @@
+[user]
+	name = Rodrigo Alejandro Juarez
+	email = rodrigo.juarez.inf@gmail.com
+	username = rodrijuarez
+
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
