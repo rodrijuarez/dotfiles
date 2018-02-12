@@ -25,9 +25,6 @@ Plug 'pangloss/vim-javascript'
 " Asynchronous execution library for Vim
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
-" Plugins for TypeScript
-Plug 'Quramy/tsuquyomi'
-
 " Syntax HighLighting
 Plug 'leafgarland/typescript-vim'
 
@@ -45,6 +42,9 @@ Plug 'maksimr/vim-jsbeautify'
 
 " Auto pairs for brackets and other stuff...
 Plug 'jiangmiao/auto-pairs'
+
+" YouCompleteMe
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Initialize plugin system
 call plug#end()
@@ -80,12 +80,6 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 
 " ../../../swap files
 set directory=$HOME/.vim/swapfiles/
-
-" Typescript Suggestions
-inoremap <C-Space> <C-x><C-o>
-inoremap <C-@> <C-x><C-o>
-let g:tsuquyomi_completion_detail = 2
-let g:tsuquyomi_disable_quickfix=1
 
 " Highlight current line
 set cursorline
