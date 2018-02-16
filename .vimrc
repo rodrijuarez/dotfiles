@@ -1,11 +1,4 @@
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
-
 " Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
@@ -46,6 +39,16 @@ Plug 'jiangmiao/auto-pairs'
 " YouCompleteMe
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
+" Plugins for TypeScript	
+Plug 'Quramy/tsuquyomi'
+
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" Dev icons
+Plug 'ryanoasis/vim-devicons'
+
 " Initialize plugin system
 call plug#end()
 
@@ -70,19 +73,19 @@ nmap ga <Plug>(EasyAlign)
 " Mapping NERDTree 
 map <C-n> :NERDTreeToggle<CR>
 
-" ctrlp
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\node_modules\|DS_Store\|git\|v[\/]\.(git|hg|svn)$'
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" Typescript Suggestions
+let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_disable_quickfix=1
+let g:tsuquyomi_shortest_import_path = 1
+
+:nmap <Leader>i :TsuImport<CR>
+autocmd FileType typescript setlocal completeopt+=menu,preview
 
 " ../../../swap files
 set directory=$HOME/.vim/swapfiles/
 
 " Highlight current line
-set cursorline
+"set cursorline
 
 " Python version
 let g:pymode_python = 'python3'
@@ -90,6 +93,9 @@ let g:pymode_python = 'python3'
 " Resize split
 map <c-o> :vertical resize +10<CR>
 map <c-_> :vertical resize -10<CR>
+
+" FZF
+map <c-p> :GFiles<CR>
 
 " Formatting with Beautify
 autocmd FileType html noremap <buffer> <leader>f :call HtmlBeautify()<cr>
@@ -99,3 +105,5 @@ autocmd FileType html noremap <buffer> <leader>f :call HtmlBeautify()<cr>
 
 " opens $MYVIMRC for editing, or use :tabedit $MYVIMRC
 :nmap <Leader>v :e $MYVIMRC<CR>
+
+set noswapfile
