@@ -49,6 +49,12 @@ Plug 'junegunn/fzf.vim'
 " Dev icons
 Plug 'ryanoasis/vim-devicons'
 
+" Themes changing
+Plug 'flazz/vim-colorschemes'
+
+" Replace with esteroides
+Plug 'tpope/vim-abolish'
+
 " Initialize plugin system
 call plug#end()
 
@@ -107,3 +113,11 @@ autocmd FileType html noremap <buffer> <leader>f :call HtmlBeautify()<cr>
 :nmap <Leader>v :e $MYVIMRC<CR>
 
 set noswapfile
+
+if has('clipboard')
+    if has('unnamedplus')  " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus
+    else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+endif
