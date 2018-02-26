@@ -114,6 +114,8 @@ autocmd FileType html noremap <buffer> <leader>f :call HtmlBeautify()<cr>
 
 set noswapfile
 
+set t_Co=256
+
 if has('clipboard')
     if has('unnamedplus')  " When possible use + register for copy-paste
         set clipboard=unnamed,unnamedplus
