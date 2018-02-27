@@ -152,3 +152,6 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # npm aliases
 alias ss='npm run start'
+
+# kills all screens
+alias kas='killall SCREEN'

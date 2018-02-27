@@ -112,8 +112,13 @@ autocmd FileType html noremap <buffer> <leader>f :call HtmlBeautify()<cr>
 " opens $MYVIMRC for editing, or use :tabedit $MYVIMRC
 :nmap <Leader>v :e $MYVIMRC<CR>
 
+" no swap, no swag
 set noswapfile
 
+" Colorscheme
+:colorscheme gruvbox
+
+" 256 color support
 set t_Co=256
 
 if has('clipboard')
