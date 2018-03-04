@@ -68,3 +68,6 @@ brew tap caskroom/fonts
 brew cask install font-hack-nerd-font
 
 brew install tmux
+
+# Haskell
+brew install haskell-stack
