@@ -67,7 +67,9 @@ brew cleanup
 brew tap caskroom/fonts
 brew cask install font-hack-nerd-font
 
+# utils
 brew install tmux
+brew install autojump
 
 # Haskell
 brew install haskell-stack
