@@ -1,6 +1,4 @@
-# Mathias’s dotfiles
-
-![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
+# Rodrigo’s dotfiles
 
 ## Installation
 
@@ -8,10 +6,10 @@
 
 ### Using Git and the bootstrap script
 
-You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
+You can clone the repository wherever you want. (I like to keep it in `~/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
 
 ```bash
-git clone https://github.com/mathiasbynens/dotfiles.git && cd dotfiles && source bootstrap.sh
+git clone https://github.com/rodrijuarez/dotfiles.git && cd dotfiles && source bootstrap.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
@@ -28,10 +26,10 @@ set -- -f; source bootstrap.sh
 
 ### Git-free install
 
-To install these dotfiles without Git:
+To install these dotfiles without Git, in this case you'd be ignoring my brew.sh file for installing different utilities:
 
 ```bash
-cd; curl -#L https://github.com/mathiasbynens/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh,.osx,LICENSE-MIT.txt}
+cd; curl -#L https://github.com/rodrijuarez/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh,brew.sh,.osx,LICENSE-MIT.txt}
 ```
 
 To update later on, just run that command again.
@@ -50,7 +48,7 @@ export PATH="/usr/local/bin:$PATH"
 
 If `~/.extra` exists, it will be sourced along with the other files. You can use this to add a few custom commands without the need to fork this entire repository, or to add commands you don’t want to commit to a public repository.
 
-My `~/.extra` looks something like this:
+e.g:
 
 ```bash
 # Git credentials
@@ -88,10 +86,8 @@ Some of the functionality of these dotfiles depends on formulae installed by `br
 Suggestions/improvements
 [welcome](https://github.com/mathiasbynens/dotfiles/issues)!
 
-## Author
+## Original Author
 
-| [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/mathias "Follow @mathias on Twitter") |
-|---|
 | [Mathias Bynens](https://mathiasbynens.be/) |
 
 ## Thanks to…
