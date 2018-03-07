@@ -59,3 +59,11 @@ export NVM_DIR="$HOME/.nvm"
 export CLICOLOR=1
 export TERM=xterm-256color
 
+# Java configs
+#export JAVA_HOME=$(/Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home)
+export PATH=${PATH}:/Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/bin
+export PATH=${PATH}:~/bin/mongodb/bin
+export PATH=${PATH}:~/bin/apache-tomcat-9.0.5/bin
+
+# The next line enables shell command completion for gcloud.
+if [ -f '~/bin/google-cloud-sdk/completion.bash.inc' ]; then source '~/bin/google-cloud-sdk/completion.bash.inc'; fi
