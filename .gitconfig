@@ -23,6 +23,9 @@
 	# Clone a repository including all submodules
 	c = clone --recursive
 
+	# see branches
+	b = branch
+
 	# Commit all changes
 	ca = !git add -A && git commit -av
 
