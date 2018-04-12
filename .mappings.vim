@@ -1,12 +1,6 @@
 " Change mapleader
 let mapleader=","
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 " Mapping NERDTree 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -30,15 +24,14 @@ autocmd FileType html noremap <buffer> <leader>f :call HtmlBeautify()<cr>
 " opens $MYVIMRC for editing, or use :tabedit $MYVIMRC
 :nmap <Leader>v :e $MYVIMRC<CR>
 
-" Folding
-nnoremap <s-tab> za
-
-" Ultisnips
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="kj"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 " String replacement
 nnoremap <Leader>r *``cgn
 nnoremap <Leader>R #``cgN
+
+" Camelcase search
+nnoremap <C-Left> :call search('\<\<Bar>\u', 'bW')<CR>
+nnoremap <C-Right> :call search('\<\<Bar>\u', 'W')<CR>
+
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-x><C-o>
+

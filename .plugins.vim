@@ -25,9 +25,6 @@ Plug 'scrooloose/nerdcommenter'
 " Plugins for TypeScript	
 Plug 'Quramy/tsuquyomi'
 
-" YouCompleteMe
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -42,14 +39,13 @@ Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-abolish'
 
 " Haskell
-Plug 'itchyny/vim-haskell-indent'
 Plug 'w0rp/ale'
 
-" Track the engine.
-Plug 'SirVer/ultisnips'
+" Beautify HTML
+Plug 'maksimr/vim-jsbeautify'
 
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
+" Elm
+Plug 'elmcast/elm-vim'
 
 " Initialize plugin system
 call plug#end()
