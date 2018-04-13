@@ -33,7 +33,10 @@ let g:airline#extensions#ale#enabled = 1
 " 256 color support
 set t_Co=256
 
+" Identation and syntax completion
 filetype plugin on
+filetype plugin indent on
+
 set omnifunc=syntaxcomplete#Complete
 
 " Yanking into clipboard

@@ -47,6 +47,9 @@ Plug 'maksimr/vim-jsbeautify'
 " Elm
 Plug 'elmcast/elm-vim'
 
+" Editor config
+Plug 'editorconfig/editorconfig-vim'
+
 " Initialize plugin system
 call plug#end()
 
