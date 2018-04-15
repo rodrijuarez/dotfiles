@@ -1,5 +1,6 @@
 source ~/.plugins.vim
 source ~/.mappings.vim
+source ~/.tags.vim
 
 " Backspace fix on Mac
 set backspace=indent,eol,start
@@ -16,7 +17,6 @@ let g:tsuquyomi_shortest_import_path = 1
 
 " Python version
 let g:pymode_python = 'python3'
-
 
 " no swap, no swag
 set noswapfile

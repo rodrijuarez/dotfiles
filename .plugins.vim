@@ -22,7 +22,7 @@ Plug 'bling/vim-airline'
 " Nerdcommenter
 Plug 'scrooloose/nerdcommenter'
 
-" Plugins for TypeScript	
+" Plugins for TypeScript
 Plug 'Quramy/tsuquyomi'
 
 " Fuzzy finder
@@ -49,6 +49,20 @@ Plug 'elmcast/elm-vim'
 
 " Editor config
 Plug 'editorconfig/editorconfig-vim'
+
+" Surround
+Plug 'tpope/vim-surround'
+
+" Git
+Plug 'airblade/vim-gitgutter'
+
+" Tags
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+Plug 'majutsushi/tagbar'
+
+" Identation
+Plug 'nathanaelkane/vim-indent-guides'
 
 " Initialize plugin system
 call plug#end()

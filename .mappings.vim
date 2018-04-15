@@ -1,7 +1,7 @@
 " Change mapleader
 let mapleader=","
 
-" Mapping NERDTree 
+" Mapping NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
 :nmap <Leader>i :TsuImport<CR>
@@ -32,6 +32,11 @@ nnoremap <Leader>R #``cgN
 nnoremap <C-Left> :call search('\<\<Bar>\u', 'bW')<CR>
 nnoremap <C-Right> :call search('\<\<Bar>\u', 'W')<CR>
 
+" copen
+nnoremap <S-Tab> :cn<CR>
+
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-x><C-o>
 
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
