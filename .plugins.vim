@@ -12,6 +12,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 " Syntax HighLighting
 Plug 'leafgarland/typescript-vim'
+Plug 'elzr/vim-json'
 
 " Prettier
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -41,9 +42,6 @@ Plug 'tpope/vim-abolish'
 " Haskell
 Plug 'w0rp/ale'
 
-" Beautify HTML
-Plug 'maksimr/vim-jsbeautify'
-
 " Elm
 Plug 'elmcast/elm-vim'
 
@@ -55,14 +53,25 @@ Plug 'tpope/vim-surround'
 
 " Git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
-" Tags
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
-Plug 'majutsushi/tagbar'
+" Clojure
+Plug 'vim-scripts/VimClojure'
+Plug 'tpope/vim-fireplace'
+Plug 'venantius/vim-cljfmt'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'luochen1990/rainbow'
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-dispatch'
 
-" Identation
-Plug 'nathanaelkane/vim-indent-guides'
+" org-mode
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
+
+" Vue
+Plug 'posva/vim-vue'
 
 " Initialize plugin system
 call plug#end()

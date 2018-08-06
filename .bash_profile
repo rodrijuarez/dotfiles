@@ -1,4 +1,6 @@
+source ~/.profile
 # Add `~/bin` to the `$PATH`
+export PATH=/usr/local/bin:$PATH
 export PATH="$HOME/bin:$PATH";
 
 # Load the shell dotfiles, and then some:
@@ -33,9 +35,7 @@ elif [ -f /etc/bash_completion ]; then
 fi;
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
-	complete -o default -o nospace -F _git g;
-fi;
+complete -o default -o nospace -F _git g;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
@@ -58,12 +58,20 @@ export NVM_DIR="$HOME/.nvm"
 
 export CLICOLOR=1
 export TERM=xterm-256color
+export COLORFGBG="15;0"
 
 # Java configs
 #export JAVA_HOME=$(/Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home)
-export PATH=${PATH}:/Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/bin
+#export PATH=${PATH}:/Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/bin
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
+export PATH=${PATH}:/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/bin
 export PATH=${PATH}:~/bin/mongodb/bin
-export PATH=${PATH}:~/bin/apache-tomcat-9.0.5/bin
 
-# The next line enables shell command completion for gcloud.
-if [ -f '~/bin/google-cloud-sdk/completion.bash.inc' ]; then source '~/bin/google-cloud-sdk/completion.bash.inc'; fi
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/zenhomes/bin/google-cloud-sdk/path.bash.inc' ]; then source '/Users/zenhomes/bin/google-cloud-sdk/path.bash.inc'; fi
+
+if [ -z "$TMUX" ]; then
+  neofetch --kitty wallpaper
+else
+  neofetch --ascii ~/Documents/doge_ascii
+fi

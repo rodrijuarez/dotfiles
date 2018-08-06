@@ -2,9 +2,20 @@
 let mapleader=","
 
 " Mapping NERDTree
-map <C-n> :NERDTreeToggle<CR>
+function NERDTreeYankCurrentNode()
+    let n = g:NERDTreeFileNode.GetSelected()
+    if n != {}
+        call setreg('"', n.path.str())
+    endif
+endfunction
 
-:nmap <Leader>i :TsuImport<CR>
+map <C-n> :NERDTreeToggle<CR>
+:nmap <Leader>z :call NERDTreeYankCurrentNode()<CR>
+
+
+autocmd FileType typescript nmap <Leader>i :TsuImport<CR>
+autocmd FileType typescript nmap <Leader>f :TsuTypeDefinition<CR>
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
@@ -13,10 +24,8 @@ map <c-o> :vertical resize +10<CR>
 map <c-_> :vertical resize -10<CR>
 
 " FZF
+map <c-f> :Files<CR>
 map <c-p> :GFiles<CR>
-
-" Formatting with Beautify
-autocmd FileType html noremap <buffer> <leader>f :call HtmlBeautify()<cr>
 
 " source $MYVIMRC reloads the saved $MYVIMRC
 :nmap <Leader>s :source $MYVIMRC<CR>
@@ -38,5 +47,7 @@ nnoremap <S-Tab> :cn<CR>
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-x><C-o>
 
-" Tagbar
-nmap <F8> :TagbarToggle<CR>
+" Clojure
+let g:rainbow_active = 1
+autocmd FileType clojure nmap <Leader>p :Cljfmt<CR>
+
