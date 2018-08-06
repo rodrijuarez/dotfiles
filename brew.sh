@@ -73,3 +73,6 @@ brew install autojump
 
 # Haskell
 brew install haskell-stack
+
+# Kind of useless stuff :)
+brew install neofetch
