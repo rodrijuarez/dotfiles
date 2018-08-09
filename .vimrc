@@ -31,6 +31,10 @@ set hidden
 
 " Colorscheme
 :colorscheme gruvbox
+let g:gruvbox_italic = 1
+let g:gruvbox_italicize_comments = 1
+
+highlight Comment cterm=italic
 
 " ale config for vim
 let g:airline#extensions#ale#enabled = 1
@@ -52,6 +56,10 @@ set lazyredraw
 set ttyfast
 set regexpengine=1
 set noshowcmd
+
+" characters display
+set list
+set listchars=space:·
 
 " Yanking into clipboard
 if has('clipboard')
