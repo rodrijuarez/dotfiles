@@ -11,6 +11,7 @@ endfunction
 
 map <C-n> :NERDTreeToggle<CR>
 :nmap <Leader>z :call NERDTreeYankCurrentNode()<CR>
+:nmap <Leader>nf :NERDTreeFind<CR>
 
 
 autocmd FileType typescript nmap <Leader>i :TsuImport<CR>

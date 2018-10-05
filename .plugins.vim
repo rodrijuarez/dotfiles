@@ -31,7 +31,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Dev icons
-Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/vim-devicons'
 
 " Themes changing
 Plug 'flazz/vim-colorschemes'
@@ -41,6 +41,7 @@ Plug 'tpope/vim-abolish'
 
 " Haskell
 Plug 'w0rp/ale'
+Plug 'alx741/vim-hindent'
 
 " Elm
 Plug 'elmcast/elm-vim'
@@ -72,6 +73,10 @@ Plug 'tpope/vim-speeddating'
 
 " Vue
 Plug 'posva/vim-vue'
+
+" PureScript
+Plug 'raichoo/purescript-vim'
+Plug 'frigoeu/psc-ide-vim'
 
 " Initialize plugin system
 call plug#end()
