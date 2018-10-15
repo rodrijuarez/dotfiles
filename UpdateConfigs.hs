@@ -9,7 +9,7 @@ import Filesystem.Path (filename)
 import Filesystem.Path.CurrentOS (decodeString, encodeString)
 import Prelude hiding (FilePath)
 import System.Directory (getHomeDirectory)
-import Turtle (cp)
+import Turtle (FilePath, cp)
 
 main = do
   copyVimrc
@@ -17,22 +17,33 @@ main = do
   copyMappingsVim
   copyKittyConf
 
-dotfiles = (<> decodeString "dotfiles/") <$> (decodeString <$> getHomeDirectory)
-
-fromHome name = (<> decodeString name) <$> (decodeString <$> getHomeDirectory)
-
-fromDotfiles name = (dotfiles <> (return $ decodeString name))
-
-cpDotfile originalPath = do
-  name <- filename <$> originalPath
-  from <- originalPath
-  to <- (fromDotfiles $ encodeString name)
-  cp from to
-
+copyVimrc :: IO ()
 copyVimrc = cpDotfile (fromHome ".vimrc")
 
+copyPluginsVim :: IO ()
 copyPluginsVim = cpDotfile (fromHome ".plugins.vim")
 
+copyMappingsVim :: IO ()
 copyMappingsVim = cpDotfile (fromHome ".mappings.vim")
 
+copyKittyConf :: IO ()
 copyKittyConf = cpDotfile (fromHome ".config/kitty/kitty.conf")
+
+dotfilesDir :: IO FilePath
+dotfilesDir =
+  (<> decodeString "dotfiles/") <$> (decodeString <$> getHomeDirectory)
+
+fromHome :: String -> IO FilePath
+fromHome name = (<> decodeString name) <$> (decodeString <$> getHomeDirectory)
+
+fromDotfiles :: String -> IO FilePath
+fromDotfiles name = (<> decodeString name) <$> dotfilesDir
+
+cpDotfile :: IO FilePath -> IO ()
+cpDotfile originalPath = do
+  fromPath <- originalPath
+  to <- (fromDotfiles . encodeString $ filename fromPath)
+  cp fromPath to
+
+myreplicateM 0 _ = return []
+myreplicateM n m = (:) <$> m <*> (myreplicateM (n - 1) m)
