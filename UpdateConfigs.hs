@@ -44,6 +44,3 @@ cpDotfile originalPath = do
   fromPath <- originalPath
   to <- (fromDotfiles . encodeString $ filename fromPath)
   cp fromPath to
-
-myreplicateM 0 _ = return []
-myreplicateM n m = (:) <$> m <*> (myreplicateM (n - 1) m)

@@ -76,3 +76,4 @@ brew install haskell-stack
 
 # Kind of useless stuff :)
 brew install neofetch
+brew install reattach-to-user-namespace
