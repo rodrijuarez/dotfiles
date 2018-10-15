@@ -17,12 +17,11 @@ main = do
   copyMappingsVim
   copyKittyConf
 
-dotfiles =
-  (decodeString <$> getHomeDirectory) <> (return $ decodeString "dotfiles/")
+dotfiles = (<> decodeString "dotfiles/") <$> (decodeString <$> getHomeDirectory)
 
-fromHome x = (decodeString <$> getHomeDirectory) <> (return $ decodeString x)
+fromHome name = (<> decodeString name) <$> (decodeString <$> getHomeDirectory)
 
-fromDotfiles x = (dotfiles <> (return $ decodeString x))
+fromDotfiles name = (dotfiles <> (return $ decodeString name))
 
 cpDotfile originalPath = do
   name <- filename <$> originalPath
