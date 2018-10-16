@@ -1,10 +1,10 @@
 source ~/.plugins.vim
 source ~/.mappings.vim
-source ~/.tags.vim
 
 let &t_ut=''
 " Backspace fix on Mac
 set backspace=indent,eol,start
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set colorcolumn=80
 
 " Display line numbers
@@ -15,7 +15,6 @@ set hlsearch
 
 " NERDTree
 let NERDTreeShowHidden=1
-let NERDTreeHijackNetrw=1
 
 " Typescript Suggestions
 let g:tsuquyomi_disable_quickfix=1
@@ -32,17 +31,25 @@ set hidden
 
 " Colorscheme
 :colorscheme gruvbox
+let g:gruvbox_italic = 1
+let g:gruvbox_italicize_comments = 1
 
 highlight Comment cterm=italic
-let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-"set termguicolors
 
 " ale config for vim
 let g:airline#extensions#ale#enabled = 1
 
 " 256 color support
 set t_Co=256
+
+set smartcase
+set smarttab
+set smartindent
+set autoindent
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set incsearch
 
 " Identation and syntax completion
 filetype plugin on
@@ -71,3 +78,4 @@ if has('clipboard')
         set clipboard=unnamed
     endif
 endif
+

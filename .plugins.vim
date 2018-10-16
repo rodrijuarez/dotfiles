@@ -42,6 +42,9 @@ Plug 'tpope/vim-abolish'
 " Haskell
 Plug 'w0rp/ale'
 Plug 'alx741/vim-hindent'
+Plug 'itchyny/vim-haskell-indent'
+Plug 'Shougo/vimproc'
+Plug 'vim-scripts/haskell.vim'
 
 " Elm
 Plug 'elmcast/elm-vim'
@@ -75,8 +78,8 @@ Plug 'tpope/vim-speeddating'
 Plug 'posva/vim-vue'
 
 " PureScript
-Plug 'raichoo/purescript-vim'
-Plug 'frigoeu/psc-ide-vim'
+Plug 'purescript-contrib/purescript-vim', { 'for': ['purescript', 'purs'] }
+Plug 'FrigoEU/psc-ide-vim', { 'for': ['purescript', 'purs'] }
 
 " Initialize plugin system
 call plug#end()
