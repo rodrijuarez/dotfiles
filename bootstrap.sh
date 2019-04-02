@@ -33,3 +33,4 @@ ln -sv ~/dotfiles/.vimrc ~
 ln -sv ~/dotfiles/.plugins.vim ~
 ln -sv ~/dotfiles/.mappings.vim ~
 ln -sv ~/dotfiles/.tmux.conf ~
+ln -sv ~/dotfiles/bin ~
