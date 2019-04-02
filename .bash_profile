@@ -57,13 +57,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 export CLICOLOR=1
-export TERM=xterm-256color
+export TERM=xterm-kitty
 export COLORFGBG="15;0"
 
 # Java configs
 #export JAVA_HOME=$(/Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home)
 #export PATH=${PATH}:/Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/bin
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/
 export PATH=${PATH}:/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/bin
 export PATH=${PATH}:~/bin/mongodb/bin
 
@@ -75,3 +76,11 @@ if [ -z "$TMUX" ]; then
 else
   neofetch --ascii ~/Documents/doge_ascii
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/user/.sdkman"
+[[ -s "/Users/user/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/user/.sdkman/bin/sdkman-init.sh"
+if [ -e /Users/user/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/user/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+source ~/.git-completion.bash

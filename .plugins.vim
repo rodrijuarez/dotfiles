@@ -5,7 +5,9 @@ call plug#begin('~/.vim/plugged')
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-vinegar'
+"Plug 'tpope/vim-vinegar'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 " Asynchronous execution library for Vim
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -13,6 +15,9 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Syntax HighLighting
 Plug 'leafgarland/typescript-vim'
 Plug 'elzr/vim-json'
+
+" Others
+Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 " Prettier
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -29,9 +34,10 @@ Plug 'Quramy/tsuquyomi'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep'
 
 " Dev icons
-"Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 " Themes changing
 Plug 'flazz/vim-colorschemes'
@@ -81,6 +87,11 @@ Plug 'posva/vim-vue'
 Plug 'purescript-contrib/purescript-vim', { 'for': ['purescript', 'purs'] }
 Plug 'FrigoEU/psc-ide-vim', { 'for': ['purescript', 'purs'] }
 
+" The trial
+Plug 'rhysd/git-messenger.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-repeat'
+Plug 'metakirby5/codi.vim'
+
 " Initialize plugin system
 call plug#end()
-

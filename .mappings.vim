@@ -14,7 +14,7 @@ map <C-n> :NERDTreeToggle<CR>
 
 
 autocmd FileType typescript nmap <Leader>i :TsuImport<CR>
-autocmd FileType typescript nmap <Leader>f :TsuTypeDefinition<CR>
+autocmd FileType typescript nmap <Leader>g :TsuTypeDefinition<CR>
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
@@ -54,6 +54,7 @@ autocmd FileType clojure nmap <Leader>p :Cljfmt<CR>
 " Haskell
 nnoremap <Leader>ht :GhcModType<cr>
 nnoremap <Leader>htc :GhcModTypeClear<cr>
+nnoremap <leader>tsh :echo tsuquyomi#hint()<cr>
 autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
 
 
@@ -96,3 +97,4 @@ autocmd FileType haskell nnoremap <leader>mg :InteroGoToDef<CR>
 " autocmd FileType haskell nnoremap <leader>is :InteroSetTargets<SPACE>
 "augroup END
 " }}}
+map <+> :RangerCurrentFile<CR>

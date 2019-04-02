@@ -26,3 +26,10 @@ else
 	fi;
 fi;
 unset doIt;
+
+
+ln -sv ~/dotfiles/.bash_profile ~
+ln -sv ~/dotfiles/.vimrc ~
+ln -sv ~/dotfiles/.plugins.vim ~
+ln -sv ~/dotfiles/.mappings.vim ~
+ln -sv ~/dotfiles/.tmux.conf ~

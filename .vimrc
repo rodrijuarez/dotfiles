@@ -1,5 +1,6 @@
 source ~/.plugins.vim
 source ~/.mappings.vim
+source ~/.preview.vim
 
 let &t_ut=''
 " Backspace fix on Mac
@@ -79,3 +80,12 @@ if has('clipboard')
     endif
 endif
 
+" Enable persistent undo
+set undodir=~/.vim/undodir
+set undofile
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+
+" Ranger
+let g:NERDTreeHijackNetrw = 0
+let g:ranger_replace_netrw = 1
