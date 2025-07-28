@@ -1,11 +1,19 @@
+# Homebrew setup
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Bash completion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+# Source profile
 source ~/.profile
+
 # Add `~/bin` to the `$PATH`
 export PATH=/usr/local/bin:$PATH
 export PATH="$HOME/bin:$PATH";
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
+# * ~/.extra can be used for other settings you don't want to commit.
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
@@ -47,40 +55,55 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
+# Additional bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
 	. $(brew --prefix)/etc/bash_completion
 fi
 
+# Autojump
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
+# NVM setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm (homebrew)
+[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
+# Use Node 18.17.0 by default
+nvm use 18.17.0 &>/dev/null || nvm install 18.17.0 &>/dev/null
+
+# Terminal colors
 export CLICOLOR=1
-export TERM=xterm-kitty
 export COLORFGBG="15;0"
 
-# Java configs
-#export JAVA_HOME=$(/Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home)
-#export PATH=${PATH}:/Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/bin
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
+# Java configuration (active)
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/
 export PATH=${PATH}:/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/bin
 export PATH=${PATH}:~/bin/mongodb/bin
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/zenhomes/bin/google-cloud-sdk/path.bash.inc' ]; then source '/Users/zenhomes/bin/google-cloud-sdk/path.bash.inc'; fi
+# Google Cloud SDK (update path to current user)
+if [ -f "$HOME/bin/google-cloud-sdk/path.bash.inc" ]; then 
+    source "$HOME/bin/google-cloud-sdk/path.bash.inc"; 
+fi
 
+# Neofetch display
 if [ -z "$TMUX" ]; then
   neofetch --kitty wallpaper
 else
   neofetch --ascii ~/Documents/doge_ascii
 fi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/user/.sdkman"
-[[ -s "/Users/user/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/user/.sdkman/bin/sdkman-init.sh"
-if [ -e /Users/user/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/user/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+# SDKMAN (update path to current user)
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Nix installer (update path to current user)
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then 
+    . "$HOME/.nix-profile/etc/profile.d/nix.sh"; 
+fi
+
+# Git completion
 source ~/.git-completion.bash
+
+# API Keys and secrets should be in ~/.extra or environment variables
+# Example: export OPENAI_API_KEY="your-key-here" in ~/.extra
