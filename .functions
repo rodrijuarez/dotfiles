@@ -197,3 +197,95 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Modern development functions
+
+# Quick project setup - create directory, initialize git, and open in code
+function newproj() {
+	if [ -z "$1" ]; then
+		echo "Usage: newproj <project-name>";
+		return 1;
+	fi;
+	mkdir -p "$1" && cd "$1";
+	git init;
+	echo "# $1" > README.md;
+	code .;
+}
+
+# Find and kill process by name
+function killproc() {
+	if [ -z "$1" ]; then
+		echo "Usage: killproc <process-name>";
+		return 1;
+	fi;
+	ps aux | grep "$1" | grep -v grep | awk '{print $2}' | xargs kill -9;
+}
+
+# Quick search in files using ripgrep (if available) or grep
+function search() {
+	if [ -z "$1" ]; then
+		echo "Usage: search <pattern> [directory]";
+		return 1;
+	fi;
+	local dir="${2:-.}";
+	if command -v rg > /dev/null; then
+		rg "$1" "$dir";
+	else
+		grep -r "$1" "$dir";
+	fi;
+}
+
+# Enhanced cd with fuzzy finding (if fzf is available)
+function cdf() {
+	if command -v fzf > /dev/null; then
+		local dir=$(find . -type d 2>/dev/null | fzf +m);
+		if [ -n "$dir" ]; then
+			cd "$dir";
+		fi;
+	else
+		echo "fzf not installed. Install with: brew install fzf";
+	fi;
+}
+
+# Git branch with fuzzy finding
+function gcof() {
+	if command -v fzf > /dev/null; then
+		local branch=$(git branch --all | grep -v HEAD | sed 's/^[* ] //' | sed 's/remotes\///' | fzf +m);
+		if [ -n "$branch" ]; then
+			git checkout "$branch";
+		fi;
+	else
+		echo "fzf not installed. Install with: brew install fzf";
+	fi;
+}
+
+# Quick port check
+function port() {
+	if [ -z "$1" ]; then
+		lsof -i -P -n | grep LISTEN;
+	else
+		lsof -i ":$1" -P -n;
+	fi;
+}
+
+# Extract various archive types
+function extract() {
+	if [ -f "$1" ] ; then
+		case "$1" in
+			*.tar.bz2)   tar xjf "$1"     ;;
+			*.tar.gz)    tar xzf "$1"     ;;
+			*.bz2)       bunzip2 "$1"     ;;
+			*.rar)       unrar e "$1"     ;;
+			*.gz)        gunzip "$1"      ;;
+			*.tar)       tar xf "$1"      ;;
+			*.tbz2)      tar xjf "$1"     ;;
+			*.tgz)       tar xzf "$1"     ;;
+			*.zip)       unzip "$1"       ;;
+			*.Z)         uncompress "$1"  ;;
+			*.7z)        7z x "$1"        ;;
+			*)     echo "'$1' cannot be extracted via extract()" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}

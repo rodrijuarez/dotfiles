@@ -107,3 +107,17 @@ source ~/.git-completion.bash
 
 # API Keys and secrets should be in ~/.extra or environment variables
 # Example: export OPENAI_API_KEY="your-key-here" in ~/.extra
+
+# Initialize modern CLI tools (if installed)
+command -v zoxide > /dev/null && eval "$(zoxide init bash)"
+command -v fzf > /dev/null && eval "$(fzf --bash)"
+
+# Setup git to use delta for diffs (if installed)
+if command -v delta > /dev/null; then
+    git config --global core.pager delta
+    git config --global interactive.diffFilter 'delta --color-only'
+    git config --global delta.navigate true
+    git config --global delta.light false
+    git config --global merge.conflictstyle diff3
+    git config --global diff.colorMoved default
+fi

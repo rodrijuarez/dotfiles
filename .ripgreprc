@@ -1,0 +1,40 @@
+# Ripgrep configuration file
+# See: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+
+# Search hidden files and directories
+--hidden
+
+# Follow symbolic links
+--follow
+
+# Don't search in .git directories
+--glob=!.git/*
+
+# Don't search in node_modules
+--glob=!node_modules/*
+
+# Don't search in build directories
+--glob=!build/*
+--glob=!dist/*
+--glob=!target/*
+
+# Don't search in common cache directories
+--glob=!.cache/*
+--glob=!*.tmp
+--glob=!*.log
+
+# Smart case searching (case insensitive unless uppercase present)
+--smart-case
+
+# Show line numbers
+--line-number
+
+# Show colors
+--colors=line:none
+--colors=line:style:bold
+
+# Max columns to prevent long lines from breaking output
+--max-columns=150
+
+# Use .gitignore rules
+--respect-gitignore

@@ -32,3 +32,35 @@ export MANPAGER='less -X';
 # Avoid issues with `gpg` as installed via Homebrew.
 # https://stackoverflow.com/a/42265848/96656
 export GPG_TTY=$(tty);
+
+# Modern CLI tool configurations
+
+# FZF configuration
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# Ripgrep configuration
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+# BAT (better cat) configuration
+export BAT_THEME="GitHub"
+export BAT_STYLE="numbers,changes,header"
+
+# Zoxide data directory
+export _ZO_DATA_DIR="$HOME/.local/share"
+
+# Editor preferences (fallback chain)
+if command -v code > /dev/null; then
+    export EDITOR='code --wait';
+elif command -v vim > /dev/null; then
+    export EDITOR='vim';
+fi
+
+# Better less defaults
+export LESS='-R --use-color -Dd+r$Du+b$'
+
+# Homebrew configuration
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
