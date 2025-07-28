@@ -87,8 +87,11 @@ zstyle ':completion:*:git-branch:*' sort false
 # Modern CLI Tools Integration
 # =============================================================================
 
-# Zoxide (better cd)
-command -v zoxide > /dev/null && eval "$(zoxide init zsh)" && alias cd='z'
+# Autojump (provides 'j' command)
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# Zoxide (better cd - provides 'z' command)
+command -v zoxide > /dev/null && eval "$(zoxide init zsh)"
 
 # FZF (fuzzy finder)
 if command -v fzf > /dev/null; then
