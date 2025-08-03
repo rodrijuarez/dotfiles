@@ -96,11 +96,11 @@ command -v zoxide > /dev/null && eval "$(zoxide init zsh)"
 # FZF (fuzzy finder)
 if command -v fzf > /dev/null; then
     source <(fzf --zsh)
-    
+
     # Custom FZF configuration with Gruvbox colors
     export FZF_DEFAULT_OPTS="
-        --height 50% 
-        --layout=reverse 
+        --height 50%
+        --layout=reverse
         --border=rounded
         --margin=1
         --padding=1
@@ -112,7 +112,7 @@ if command -v fzf > /dev/null; then
         --color=marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934
         --color=border:#504945
     "
-    
+
     # Enhanced FZF functions
     export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {}'"
     export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
@@ -141,6 +141,103 @@ function l() {
         eza --long --header --icons --git --group-directories-first "$@"
     else
         ls -la "$@"
+    fi
+}
+
+# Starship Theme Switcher
+function theme() {
+    local theme_dir="$HOME/.config/starship-themes"
+    local config_file="$HOME/.config/starship.toml"
+
+    # Available themes
+    local themes=("gruvbox" "tokyo-night" "dracula" "nord" "catppuccin" "gruvbox-light")
+
+    if [[ $# -eq 0 ]]; then
+        echo "🎨 Available Starship themes:"
+        echo ""
+        echo "  🌙 Dark Themes:"
+        echo "   gruvbox      - Warm retro theme (original default)"
+        echo "   tokyo-night  - Dark purple Tokyo vibes"
+        echo "   dracula      - High contrast vampire theme"
+        echo "   nord         - Cool Arctic color palette"
+        echo "   catppuccin   - Soothing pastel dark theme"
+        echo ""
+        echo "  ☀️  Light Themes:"
+        echo "   gruvbox-light - Warm retro light theme"
+        echo ""
+        echo "Usage: theme <theme-name>"
+        echo "Example: theme tokyo-night"
+        return 0
+    fi
+
+    local selected_theme="$1"
+
+    # Check if theme exists
+    if [[ ! -f "$theme_dir/$selected_theme.toml" ]]; then
+        echo "❌ Theme '$selected_theme' not found!"
+        echo "Available themes: ${themes[*]}"
+        return 1
+    fi
+
+    # Switch theme
+    cp "$theme_dir/$selected_theme.toml" "$config_file"
+
+    # Set terminal colors based on terminal type
+    if [[ "$TERM" == "xterm-kitty" ]]; then
+        # Update Kitty theme
+        local kitty_config="$HOME/.config/kitty/kitty.conf"
+        local kitty_theme_path="$HOME/.config/kitty/themes/$selected_theme.conf"
+        
+        if [[ -f "$kitty_theme_path" ]]; then
+            # Update the include line in kitty.conf
+            if grep -q "include themes/" "$kitty_config"; then
+                sed -i '' "s|include themes/.*\.conf|include themes/$selected_theme.conf|" "$kitty_config"
+            else
+                echo "include themes/$selected_theme.conf" >> "$kitty_config"
+            fi
+            
+            # Reload Kitty configuration
+            if command -v kitten > /dev/null; then
+                kitten @ set-colors --all --configured "$kitty_theme_path" 2>/dev/null || true
+            fi
+        fi
+    elif [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+        # Set iTerm2 background color
+        case "$selected_theme" in
+            "tokyo-night")
+                printf "\033]Ph1a1b26\033\\"  # Tokyo Night background
+                ;;
+            "dracula")
+                printf "\033]Ph282a36\033\\"  # Dracula background
+                ;;
+            "nord")
+                printf "\033]Ph2e3440\033\\"  # Nord background
+                ;;
+            "gruvbox")
+                printf "\033]Ph282828\033\\"  # Gruvbox Dark background
+                ;;
+            "catppuccin")
+                printf "\033]Ph1e1e2e\033\\"  # Catppuccin background
+                ;;
+            "gruvbox-light")
+                printf "\033]Phfbf1c7\033\\"  # Gruvbox Light background
+                ;;
+        esac
+    fi
+
+    # Reload starship
+    if command -v starship > /dev/null; then
+        echo "🌟 Switched to '$selected_theme' theme!"
+        if [[ "$TERM" == "xterm-kitty" ]]; then
+            echo "🐱 Kitty theme updated automatically"
+        elif [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+            echo "🎨 iTerm2 background updated automatically"
+        fi
+        echo "🔄 Reloading shell to apply changes..."
+        exec zsh
+    else
+        echo "❌ Starship not found. Please install starship first."
+        return 1
     fi
 }
 
@@ -187,6 +284,9 @@ if [[ -f "$NVM_DIR/nvm.sh" ]]; then
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         nvm "$@"
     }
+
+    # Auto-use default Node.js version on shell startup
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && nvm use default --silent
 fi
 
 # Final Setup
@@ -198,7 +298,7 @@ fi
 # Syntax highlighting (must be at the end)
 if [[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    
+
     # Customize highlighting colors
     ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
     ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
@@ -214,3 +314,4 @@ if [[ -o interactive ]] && [[ -z "$TMUX" ]]; then
     echo "📁 Use 'proj' to navigate projects, 'search' for advanced file search"
     echo "🔍 FZF integrated: Ctrl+T (files), Ctrl+R (history), Alt+C (directories)"
 fi
+
